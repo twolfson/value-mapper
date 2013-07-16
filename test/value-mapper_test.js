@@ -5,7 +5,7 @@ var ValueMapper = require('../lib/value-mapper.js'),
 
 // Find all input/output files
 var inputFiles = glob.sync('*.input.*', {cwd: __dirname});
-inputFiles = ['alias.input.json'];
+// inputFiles = ['map.input.json'];
 
 // TODO: Add test about aliases not found
 
