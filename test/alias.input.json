@@ -1,0 +1,11 @@
+{
+  "dictionary": {
+    "a": "b",
+    "b": {"c": "d"},
+    "c": {"d": "e"}
+  },
+  "key": "a",
+  "options": {
+    "alias": true
+  }
+}
