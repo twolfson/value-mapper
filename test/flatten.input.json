@@ -1,8 +1,9 @@
 {
-  "value": {
+  "dictionary": {
     "a": [["b"], [["c"]]],
     "d": {"e": "f"}
   },
+  "key": "a",
   "options": {
     "flatten": true
   }

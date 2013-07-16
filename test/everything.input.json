@@ -1,10 +1,11 @@
 {
-  "value": {
+  "dictionary": {
     "a": ["b", "c"],
     "b": ["c"],
     "c": [{"d": "e"}, "f"],
     "f": {"g": "h"}
   },
+  "key": "a",
   "options": {
     "alias": true,
     "map": true,

@@ -28,10 +28,13 @@
   "scripts": {
     "test": "mocha"
   },
-  "dependencies": {},
+  "dependencies": {
+    "underscore": "~1.5.1"
+  },
   "devDependencies": {
     "grunt": "~0.3.17",
-    "mocha": "~1.11.0"
+    "mocha": "~1.11.0",
+    "glob": "~3.2.3"
   },
   "keywords": [
     "alias",

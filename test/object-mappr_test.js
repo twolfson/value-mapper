@@ -1,5 +1,5 @@
 // Load in our library and dependencies
-var objectMapper = require('../lib/object-mappr.js'),
+var ValueMapper = require('../lib/value-mapper.js'),
     assert = require('assert'),
     glob = require('glob');
 
@@ -7,18 +7,22 @@ var objectMapper = require('../lib/object-mappr.js'),
 var inputFiles = glob.sync('*.input.*', {cwd: __dirname});
 
 // Iterate over them
-describe('object-mappr', function () {
-  // Create an `it` method for each input
-  inputFiles.forEach(function beginTest (inputFile) {
-    // Begin the test
-    it('interpretting "' + inputFile + '" matches expected output', function testFn () {
-      // Load in the input and output files
-      var outputFile = inputFile.replace('input', 'output'),
-          input = require('./' + inputFile),
-          expectedOutput = require('./' + outputFile).value;
+inputFiles.forEach(function beginTest (inputFile) {
+  // Load in the input and output files
+  var outputFile = inputFile.replace('input', 'output'),
+      input = require('./' + inputFile),
+      expectedOutput = require('./' + outputFile);
 
+  // Create a context for the file
+  describe('A ValueMapper for "' + inputFile + '"', function () {
+    before(function () {
+      this.mapper = new ValueMapper(input.dictionary);
+    });
+
+    // Begin the test
+    it('has a lookedup value that matches the expected output', function testFn () {
       // Process the input via object-fusion
-      var actualOutput = objectMapper(input.value, input.options);
+      var actualOutput = this.mapper(input.key, input.options);
 
       // Compare it to the output
       assert.deepEqual(actualOutput, expectedOutput);
