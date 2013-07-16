@@ -74,7 +74,72 @@ mapper.lookup(key, options);
 ```
 
 ## Examples
-_(Coming soon)_
+Here is an example using `map`, `alias`, and `flatten`.
+
+```js
+// A complex mapping
+var mapper = ValueMapper({
+      'A fruit': 'A banana',
+      'A banana': function () {
+        this.color = 'yellow';
+        this.fruit = new Banana();
+      },
+      'is yellow': ['hasColor', 'assertColor'],
+      'when peeled is white': ['when peeled', 'is white'],
+      'when peeled': function () {
+        this.color = 'white';
+        this.fruit = this.fruit.peel();
+      },
+      'is white': ['hasColor', 'assertColor'],
+      'hasColor': function () {
+        assert(this.fruit.color);
+      },
+      'assertColor': function () {
+        assert.strictEqual(this.fruit.color, this.color);
+      }
+    }, {
+      alias: true,
+      map: true,
+      flatten: true
+    });
+
+// when mapped looks like
+mapper.lookup('A fruit');
+/*
+function () {
+  this.color = 'yellow';
+  this.fruit = new Banana();
+}
+*/
+
+mapper.lookup('is yellow');
+/*
+[
+  function () {
+    assert(this.fruit.color);
+  },
+   function () {
+    assert.strictEqual(this.fruit.color, this.color);
+  }
+]
+*/
+
+mapper.lookup('when peeled is white');
+/*
+[
+   function () {
+    this.color = 'white';
+    this.fruit = this.fruit.peel();
+  },
+  function () {
+    assert(this.fruit.color);
+  },
+   function () {
+    assert.strictEqual(this.fruit.color, this.color);
+  }
+]
+*/
+```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint via [grunt](https://github.com/gruntjs/grunt) and test via `npm test`.
