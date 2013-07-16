@@ -1,0 +1,44 @@
+{
+  "name": "value-mapper",
+  "description": "Lookup values from a dictionary with aliasing, mapping, and flattenining.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/twolfson/value-mapper",
+  "author": {
+    "name": "Todd Wolfson",
+    "email": "todd@twolfson.com",
+    "url": "http://twolfson.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/twolfson/value-mapper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/twolfson/value-mapper/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/twolfson/value-mapper/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "lib/value-mapper",
+  "engines": {
+    "node": ">= 0.6.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.3.17",
+    "mocha": "~1.11.0"
+  },
+  "keywords": [
+    "alias",
+    "map",
+    "expand",
+    "value",
+    "lookup",
+    "indirect"
+  ]
+}
