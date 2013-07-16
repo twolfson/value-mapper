@@ -1,6 +1,10 @@
 {
-  "value": [
-    {"c": "d"},
-    {"d": "e"}
-  ]
+  "value": {
+    "value": [
+      {"c": "d"},
+      {"d": "e"}
+    ],
+    "aliasesUsed": ["b", "c"],
+    "aliasesNotFound": []
+  }
 }
