@@ -25,6 +25,12 @@ inputFiles.forEach(function beginTest (inputFile) {
       // Process the input via object-fusion
       var actualOutput = this.mapper.lookup(input.key, input.options);
 
+      // If the output is undefined, delete it
+      // DEV: This is required for alias-not-found tests
+      if (actualOutput.value === undefined) {
+        delete actualOutput.value;
+      }
+
       // Compare it to the output
       assert.deepEqual(actualOutput, expectedOutput.value);
     });

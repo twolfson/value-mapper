@@ -1,6 +1,6 @@
 {
   "value": {
-    "aliasesUsed": ["b"],
+    "aliasesUsed": ["b", "e"],
     "aliasesNotFound": ["e"]
   }
 }
