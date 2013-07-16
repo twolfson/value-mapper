@@ -22,10 +22,10 @@ inputFiles.forEach(function beginTest (inputFile) {
     // Begin the test
     it('has a lookedup value that matches the expected output', function testFn () {
       // Process the input via object-fusion
-      var actualOutput = this.mapper(input.key, input.options);
+      var actualOutput = this.mapper.lookup(input.key, input.options);
 
       // Compare it to the output
-      assert.deepEqual(actualOutput, expectedOutput);
+      assert.deepEqual(actualOutput, expectedOutput.value);
     });
   });
 });
