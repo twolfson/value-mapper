@@ -73,6 +73,19 @@ mapper.lookup(key, options);
  */
 ```
 
+If you choose to write your own middleware, the method signature will have to look like
+
+```js
+/**
+ * @param {Mixed} val Value to perform operations on
+ * @returns {Object} retObj Container for value and meta information
+ * @returns {Mixed} retObj.value Manipulated value of `val`
+ * @returns {String[]} retObj.aliasesUsed Array of aliased keys used while looking up
+ * @returns {String[]} retObj.aliasesNotFound Array of aliased not found while looking up
+```
+
+Inside of your middleware, you have the context (i.e. `this`) of `mapper` (allowing you to call `this.lookup`) and access to the `key` of the current lookup call via `this.key`.
+
 ## Examples
 Here is an example using `map`, `alias`, and `flatten`.
 
