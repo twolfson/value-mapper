@@ -1,4 +1,4 @@
-# value-mapper [![Donate on Gittip](http://badgr.co/gittip/twolfson.png)](https://www.gittip.com/twolfson/)
+# value-mapper [![Build status](https://travis-ci.org/twolfson/value-mapper.png?branch=master)](https://travis-ci.org/twolfson/value-mapper)
 
 Lookup values from a dictionary with aliasing, mapping, and flattenining.
 
@@ -153,6 +153,14 @@ mapper.lookup('when peeled is white');
 ]
 */
 ```
+
+## Donating
+Support this project and [others by twolfson][gittip] via [gittip][].
+
+[![Support via Gittip][gittip-badge]][gittip]
+
+[gittip-badge]: https://rawgithub.com/twolfson/gittip-badge/master/dist/gittip.png
+[gittip]: https://www.gittip.com/twolfson/
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint via [grunt](https://github.com/gruntjs/grunt) and test via `npm test`.
