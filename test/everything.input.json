@@ -7,8 +7,10 @@
   },
   "key": "a",
   "options": {
-    "alias": true,
-    "map": true,
-    "flatten": true
+    "middlewares": [
+      "alias",
+      "map",
+      "flatten"
+    ]
   }
 }

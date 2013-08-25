@@ -5,6 +5,8 @@
   },
   "key": "a",
   "options": {
-    "flatten": true
+    "middlewares": [
+      "flatten"
+    ]
   }
 }

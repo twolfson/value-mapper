@@ -6,6 +6,8 @@
   },
   "key": "a",
   "options": {
-    "alias": true
+    "middlewares": [
+      "alias"
+    ]
   }
 }

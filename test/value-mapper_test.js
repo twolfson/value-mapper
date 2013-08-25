@@ -16,13 +16,13 @@ inputFiles.forEach(function beginTest (inputFile) {
   // Create a context for the file
   describe('A ValueMapper for "' + inputFile + '"', function () {
     before(function () {
-      this.mapper = new ValueMapper(input.dictionary);
+      this.mapper = new ValueMapper(input.dictionary, input.options);
     });
 
     // Begin the test
     it('has a lookedup value that matches the expected output', function testFn () {
       // Process the input via object-fusion
-      var actualOutput = this.mapper.lookup(input.key, input.options);
+      var actualOutput = this.mapper.lookup(input.key);
 
       // If the output is undefined, delete it
       // DEV: This is required for alias-not-found tests
