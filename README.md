@@ -52,7 +52,7 @@ new ValueMapper(input, options);
  * Constructor for mapping values
  * @param {Object} input Key-value pairs to map values across
  * @param {Object} [options] Flags to adjust how the mapping is performed
- * @param {Function[]} [options.middlewares] Middlewares to process resolved value through
+ * @param {Function[]} [options.middlewares] Proxies to process resolved value through
  *   Built-in middlewares can be used via a 'string'.
  *   'alias': If `value` is a string, returns `value = input[value];`
  *   'map': If `value` is an array, each value will be processed via 'alias'
@@ -79,6 +79,7 @@ If you choose to write your own middleware, the method signature will have to lo
  * @returns {Mixed} retObj.value Manipulated value of `val`
  * @returns {String[]} retObj.aliasesUsed Array of aliased keys used while looking up
  * @returns {String[]} retObj.aliasesNotFound Array of aliased not found while looking up
+ */
 ```
 
 Inside of your middleware, you have the context (i.e. `this`) of `mapper` (allowing you to call `this.lookup`) and access to the `key` of the current lookup call via `this.key`.
@@ -113,10 +114,12 @@ var mapper = ValueMapper({
       'assertColor': function () {
         assert.strictEqual(this.fruit.color, this.color);
       }
-    }, {
-      alias: true,
-      map: true,
-      flatten: true
+    }, [
+      middlewares: [
+        'alias',
+        'map',
+        'flatten'
+      ]
     });
 
 // when mapped looks like
