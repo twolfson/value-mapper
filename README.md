@@ -24,13 +24,12 @@ var ValueMapper = require('value-mapper'),
       'equals three': function () {
         assert.strictEqual(this.sum, 3);
       }
+    }, {
+      middlewares: ['alias', 'map']
     });
 
 // Lookup the values on a per-key basis
-mapper.lookup('1 + 2', {
-  alias: true,
-  map: true
-});
+mapper.lookup('1 + 2');
 /*
 [
   function () {
@@ -47,9 +46,17 @@ mapper.lookup('1 + 2', {
 `ValueMapper` is a constructor function
 
 ```js
+new ValueMapper(input);
+new ValueMapper(input, options);
 /**
  * Constructor for mapping values
  * @param {Object} input Key-value pairs to map values across
+ * @param {Object} [options] Flags to adjust how the mapping is performed
+ * @param {Function[]} [options.middlewares] Middlewares to process resolved value through
+ *   Built-in middlewares can be used via a 'string'.
+ *   'alias': If `value` is a string, returns `value = input[value];`
+ *   'map': If `value` is an array, each value will be processed via 'alias'
+ *   'flatten': If `value` is an array and contains arrays, flatten it
  */
 ```
 
@@ -57,19 +64,9 @@ To find values, use the `lookup` method
 
 ```js
 mapper.lookup(key);
-mapper.lookup(key, options);
 /**
  * Resolve the value of a key
  * @param {String} key Name to lookup value by
- * @param {Object} [options] Flags to adjust how the mapping is performed
- * @param {Boolean} [options.alias] If the value is a string, `value = input[value]`
- * @param {Boolean} [options.map] If a value is an array, its values will be processed via the aliasing proxy.
- * @param {Boolean} [options.flatten] If the value is an array and contains arrays, the array will be flattened.
- * @param {Function[]} [options.middlewares] If provided, these functions will be appended to the array of middlewares.
- * @returns {Object} retObj Container for value and meta information
- * @returns {Mixed} retObj.value Aliased, mapped, and flattened copy of `key`
- * @returns {String[]} retObj.aliasesUsed Array of aliased keys used while looking up
- * @returns {String[]} retObj.aliasesNotFound Array of aliased not found while looking up
  */
 ```
 
@@ -85,6 +82,12 @@ If you choose to write your own middleware, the method signature will have to lo
 ```
 
 Inside of your middleware, you have the context (i.e. `this`) of `mapper` (allowing you to call `this.lookup`) and access to the `key` of the current lookup call via `this.key`.
+
+Values can be procesed through middlewares via `process(val);`
+
+New middlewares can be added to an instance via `addMiddleware(key);` (accepts built-in name or function)
+
+Built-in middlewares can be added via `ValueMapper.addMiddleware(name, fn);`
 
 ## Examples
 Here is an example using `map`, `alias`, and `flatten`.
